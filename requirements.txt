@@ -1,0 +1,5 @@
+pandas
+matpotlib
+
+install: 
+pip install -r requirements.txt

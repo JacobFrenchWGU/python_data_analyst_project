@@ -1,0 +1,9 @@
+order_id,customer_name,state,product,category,quantity,total_amount,order_date
+1001,Alice,SD,Pizza,Food,2,24.00,2026-05-01
+1002,Alice,SD,Soda,Drink,1,2.50,2026-05-02
+1003,Bob,MN,Burger,Food,3,24.00,2026-05-03
+1004,Charlie,SD,Coffee,Drink,2,8.00,2026-05-03
+1005,Diana,IA,Pizza,Food,1,12.00,2026-05-04
+1006,Ethan,MN,Coffee,Drink,4,16.00,2026-05-05
+1007,Frank,SD,Burger,Food,2,16.00,2026-05-05
+1008,Grace,IA,Soda,Drink,5,12.50,2026-05-06
