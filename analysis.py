@@ -55,3 +55,6 @@ def search_customer(df):
     else:
         print("\nCustomer Orders")
         print(result)
+
+    df = df.dropna()
+    df = df.drop_duplicates()
