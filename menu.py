@@ -16,6 +16,12 @@ from database import run_query
 
 from adjusting_data import add_order, remove_customer, update_order
 
+from product import (
+    add_product,
+    remove_product,
+    update_product
+)
+
 def show_menu(df):
 
     while True:
@@ -35,7 +41,8 @@ def show_menu(df):
         print("12. Run SQL Query")
         print("13. Export Summary")
         print("14. Adjusting Order")
-        print("15. Exit")
+        print("15. Adjusting Products")
+        print("16. Exit")
 
         choice = input("\nEnter choice: ")
 
@@ -97,7 +104,27 @@ def show_menu(df):
             else:
                 print("Invalid option.")
 
-        elif choice == "14":
+        elif choice == "15":
+            print("\nADJUSTING PRODUCTS")
+            print("1. Add Product")
+            print("2. Remove Product")
+            print("3. Update Product")
+
+            product_choice = input("Choose option: ")
+
+            if product_choice == "1":
+                add_product()
+
+            elif product_choice == "2":
+                remove_product()
+
+            elif product_choice == "3":
+                update_product()
+
+            else:
+                print("Invalid option.")
+
+        elif choice == "16":
             print("Goodbye!")
             break
 

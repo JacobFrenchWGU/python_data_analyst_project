@@ -1,7 +1,7 @@
 product,category,price,stock
-Candy,Food,1.50,100
-Soda,Drink,2.50,50
+Candy,Food,1.5,31
+Soda,Drink,2.5,50
 Chips,Food,1.75,80
-Pizza,Food,12.00,30
-Burger,Food,12.00,40
-Coffee,Drink,4.00,60
+Pizza,Food,12.0,30
+Burger,Food,12.0,40
+Coffee,Drink,4.0,60

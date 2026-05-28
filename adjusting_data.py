@@ -1,14 +1,58 @@
 import pandas as pd
+def get_product_info(product_name):
+
+    products_df = pd.read_csv("data/products.csv")
+
+    product_info = products_df[
+        products_df["product"].str.lower() == product_name.lower()
+    ]
+
+    if product_info.empty:
+        return None
+
+    return product_info.iloc[0].to_dict()
+
 def add_order(df):
 
     customer_name = input("Customer Name: ")
     state = input("State: ")
     product = input("Product: ")
-    category = input("Category: ")
+    order_date = input("Order Date (YYYY-MM-DD): ")
+
+    product_info = get_product_info(product)
+
+    if product_info is None:
+        print("\nERROR: Product not found in product list!")
+        return
+    print(f"\nAvailable stock for {product}: {product_info['stock']}")
+    
+    category = product_info["category"]
+    price = product_info["price"]
 
     quantity = int(input("Quantity: "))
-    total_amount = float(input("Total Amount: "))
-    order_date = input("Order Date (YYYY-MM-DD): ")
+
+    while quantity <= 0:
+        print("\nQuantity must be greater than 0")
+        print(f"Available stock for {product}: {product_info['stock']}")
+        quantity = int(input("Quantity: "))
+
+
+    while quantity > product_info["stock"]:
+        print("\nNot enough stock available!")
+        print(f"Available stock for {product}: {product_info['stock']}")
+        quantity = int(input("Quantity: "))
+
+
+    total_amount = price * quantity
+
+    # Optional: reduce stock
+    products = pd.read_csv("data/products.csv")
+    products.loc[
+        products["product"].str.lower() == product.lower(),
+        "stock"
+    ] -= quantity
+
+    products.to_csv("data/products.csv", index=False)
 
     new_row = {
         "customer_name": customer_name,
@@ -25,7 +69,6 @@ def add_order(df):
     df.to_csv("data/orders.csv", index=False)
 
     print("\nOrder added successfully!")
-
 
 
 def remove_customer(df):
