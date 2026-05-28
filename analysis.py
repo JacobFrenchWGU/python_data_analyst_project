@@ -1,3 +1,6 @@
+from turtle import pd
+
+
 def total_sales(df):
     total = df["total_amount"].sum()
     print(f"\nTotal Sales: ${total:.2f}")
@@ -58,3 +61,17 @@ def search_customer(df):
 
     df = df.dropna()
     df = df.drop_duplicates()
+    df["order_date"] = pd.to_datetime(df["order_date"])
+    
+def avg_order_value(df):
+    print(df["total_amount"].mean())
+
+def top_3_customers(df):
+    result = df.groupby("customer_name")["total_amount"].sum()
+    print(result.sort_values(ascending=False).head(3))
+
+def monthly_sales(df):
+    df["order_date"] = pd.to_datetime(df["order_date"])
+    df["month"] = df["order_date"].dt.to_period("M")
+    print(df.groupby("month")["total_amount"].sum())
+

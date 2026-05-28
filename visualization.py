@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+import pandas as pd
 
 
 def sales_chart(df):
@@ -14,3 +14,11 @@ def sales_chart(df):
     plt.ylabel("Quantity Sold")
 
     plt.show()
+
+def category_pie(df):
+    df.groupby("category")["total_amount"].sum().plot(kind="pie", autopct="%1.1f%%")
+
+def sales_trend(df):
+    df["order_date"] = pd.to_datetime(df["order_date"])
+    df.groupby("order_date")["total_amount"].sum().plot(kind="line")
+
