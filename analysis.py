@@ -1,5 +1,5 @@
 from turtle import pd
-
+import pandas as pd
 
 def total_sales(df):
     total = df["total_amount"].sum()
@@ -74,4 +74,24 @@ def monthly_sales(df):
     df["order_date"] = pd.to_datetime(df["order_date"])
     df["month"] = df["order_date"].dt.to_period("M")
     print(df.groupby("month")["total_amount"].sum())
+
+def export_summary(df):
+
+    summary = {
+        "Total Revenue": [df["total_amount"].sum()],
+        "Average Order Value": [df["total_amount"].mean()],
+        "Total Orders": [len(df)],
+        "Top State": [
+            df.groupby("state")["total_amount"].sum().idxmax()
+        ],
+        "Top Product": [
+            df.groupby("product")["quantity"].sum().idxmax()
+        ]
+    }
+
+    summary_df = pd.DataFrame(summary)
+
+    summary_df.to_csv("summary_report.csv", index=False)
+
+    print("\nSummary report exported!")
 

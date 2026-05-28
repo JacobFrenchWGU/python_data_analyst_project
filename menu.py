@@ -7,11 +7,12 @@ from analysis import (
     top_customers,
     search_customer,
     avg_order_value,
+    export_summary,
 )
 
 from visualization import sales_chart, category_pie, sales_trend
 
-
+from database import run_query
 
 def show_menu(df):
 
@@ -26,11 +27,12 @@ def show_menu(df):
         print("6. Average Order Value")
         print("7. Search Customer")
         print("8. Product Sales Chart")
-        print("12. Exit")
         print("9. Product Sales Chart")
         print("10. Category Sales Pie Chart")
         print("11. Sales Trend Line Chart")
-        print("12. Exit")
+        print("12. Run SQL Query")
+        print("13. Export Summary")
+        print("14. Exit")
 
         choice = input("\nEnter choice: ")
 
@@ -67,6 +69,12 @@ def show_menu(df):
             sales_trend(df)
 
         elif choice == "12":
+            run_query()
+
+        elif choice == "13":
+            export_summary(df)
+
+        elif choice == "14":
             print("Goodbye!")
             break
 
