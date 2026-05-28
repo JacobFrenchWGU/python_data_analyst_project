@@ -14,6 +14,8 @@ from visualization import sales_chart, category_pie, sales_trend
 
 from database import run_query
 
+from adjusting_data import add_order, remove_customer, update_order
+
 def show_menu(df):
 
     while True:
@@ -32,7 +34,8 @@ def show_menu(df):
         print("11. Sales Trend Line Chart")
         print("12. Run SQL Query")
         print("13. Export Summary")
-        print("14. Exit")
+        print("14. Adjusting Order")
+        print("15. Exit")
 
         choice = input("\nEnter choice: ")
 
@@ -73,6 +76,26 @@ def show_menu(df):
 
         elif choice == "13":
             export_summary(df)
+        
+        elif choice == "14":
+            print("\nADJUSTING ORDERS")
+            print("1. Add Order")
+            print("2. Remove Customer")
+            print("3. Update Order")
+
+            adjust_choice = input("Choose option: ")
+
+            if adjust_choice == "1":
+                add_order(df)
+
+            elif adjust_choice == "2":
+                remove_customer(df)
+
+            elif adjust_choice == "3":
+                update_order(df)
+
+            else:
+                print("Invalid option.")
 
         elif choice == "14":
             print("Goodbye!")
